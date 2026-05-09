@@ -1,5 +1,6 @@
 asexplicit
 customizer
+diffplug
 ensurepath
 envrc
 factorypath
@@ -7,6 +8,8 @@ forgejo
 generis
 glek
 glektarssza
+importorder
+jvmargs
 mapfile
 netrwhist
 noconfirm
