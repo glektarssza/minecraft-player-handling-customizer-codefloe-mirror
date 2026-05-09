@@ -1,0 +1,20 @@
+{
+    "name": "Prevent force pushes or deletion of the default branch",
+    "target": "branch",
+    "enforcement": "active",
+    "conditions": {
+        "ref_name": {
+            "exclude": [],
+            "include": ["~DEFAULT_BRANCH"]
+        }
+    },
+    "rules": [
+        {
+            "type": "deletion"
+        },
+        {
+            "type": "non_fast_forward"
+        }
+    ],
+    "bypass_actors": []
+}

@@ -1,0 +1,5 @@
+shell=bash
+check-sourced=true
+extended-analysis=true
+external-sources=true
+source-path=SCRIPTDIR

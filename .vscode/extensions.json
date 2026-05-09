@@ -1,0 +1,8 @@
+{
+    "recommendations": [
+        "EditorConfig.EditorConfig",
+        "github.remotehub",
+        "github.vscode-pull-request-github",
+        "github.vscode-github-actions"
+    ]
+}
