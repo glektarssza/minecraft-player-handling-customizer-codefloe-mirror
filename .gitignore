@@ -1,14 +1,25 @@
 # Editors #
 ## Visual Studio Code ##
 ### Workspace Folder ###
-/.vscode/**
+.vscode/*
 
 ### Exceptions ###
-!/.vscode/extensions.json
-!/.vscode/launch.json
-!/.vscode/tasks.json
-!/.vscode/*.code-snippets
-!/.vscode/*.code-workspace
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+!.vscode/*.code-workspace
+!.vscode/*.code-snippets
+
+### Local History ###
+.history/
+
+### Built Visual Studio Code Extensions ###
+*.vsix
+
+## Eclipse ##
+.project
+.classpath
+.settings/
 
 ## Vim ##
 ### Swap ###
@@ -28,18 +39,38 @@ Sessionx.vim
 
 ### Auto-generated Tag Files ###
 tags
-ctags
 
 ### Undo Persistence ###
 [._]*.un~
+
+## Eclipse ##
+### Core ###
+.classpath
+.factorypath
+.project
+.settings/
 
 # Logs #
 *.log*
 
 # Environment #
 ## General ##
-**/.env*
+.envrc
 
 # Cache #
 ## CSpell ##
 .cspellcache
+
+## Gradle ##
+user.properties
+
+# Artifacts #
+## Gradle ##
+bin/
+build/
+.gradle/
+
+# Debugging #
+## Gradle ##
+run/
+bin/

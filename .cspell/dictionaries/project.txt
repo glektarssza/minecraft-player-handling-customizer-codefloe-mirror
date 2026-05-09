@@ -1,6 +1,8 @@
 asexplicit
 customizer
 ensurepath
+envrc
+factorypath
 forgejo
 generis
 glek
