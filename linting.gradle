@@ -18,6 +18,6 @@ spotless {
         endWithNewline()
         removeUnusedImports()
         importOrderFile("spotless.importorder")
-        eclipse("4.35").configFile("formatter.xml")
+        eclipse("4.35").configFile("formatting_rules.xml")
     }
 }

@@ -1,7 +1,64 @@
 plugins {
-    id("eclipse")
-    id("maven-publish")
-    id("com.diffplug.spotless") version "8.4.0" apply false
+    id('java-library')
+    id('maven-publish')
+    id('eclipse')
+    id('com.gtnewhorizons.retrofuturagradle') version '2.0.2'
+    id('com.diffplug.spotless') version '8.4.0' apply false
 }
 
-apply from: "spotless.gradle"
+group = 'com.glektarssza.player_handling_customizer'
+version = '0.1.0'
+
+java {
+    toolchain {
+        languageVersion.set(JavaLanguageVersion.of(8))
+        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
+        vendor.set(org.gradle.jvm.toolchain.JvmVendorSpec.AZUL)
+    }
+    withSourcesJar()
+    withJavadocJar()
+}
+
+minecraft {
+    mcVersion = '1.12.2'
+    username = 'Developer'
+    injectedTags.put('VERSION', project.version)
+    extraRunJvmArguments.add("-ea:${project.group}")
+    groupsToExcludeFromAutoReobfMapping.addAll('com.diffplug', 'com.diffplug.durian', 'net.industrial-craft')
+}
+
+tasks.injectTags.configure {
+    outputClassName.set("${project.group}.Tags")
+}
+
+tasks.processResources.configure {
+    // -- Needed for configuration cache to work
+    def projVersion = project.version.toString()
+    inputs.property('version', projVersion)
+
+    filesMatching('mcmod.info') {
+        expand(mapOf('modVersion' to projVersion))
+    }
+}
+
+configurations {
+    runtimeOnlyNonPublishable {
+        description = 'Runtime only dependencies that are not published alongside the jar'
+        canBeConsumed = false
+        canBeResolved = false
+    }
+}
+
+[configurations.runtimeClasspath, configurations.testRuntimeClasspath].forEach {
+    it.extendsFrom(configurations.runtimeOnlyNonPublishable)
+}
+
+apply from: 'repositories.gradle'
+apply from: 'dependencies.gradle'
+apply from: 'linting.gradle'
+apply from: 'ide.gradle'
+
+publishing {
+    publications {}
+    repositories {}
+}

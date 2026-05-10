@@ -1,4 +1,6 @@
 asexplicit
+azul
+buildscript
 customizer
 diffplug
 ensurepath
@@ -8,6 +10,7 @@ forgejo
 generis
 glek
 glektarssza
+gtnewhorizons
 importorder
 jvmargs
 mapfile
@@ -17,6 +20,7 @@ noninfringement
 pacman
 pipx
 remotehub
+retrofuturagradle
 safecrlf
 sessionx
 tarssza
