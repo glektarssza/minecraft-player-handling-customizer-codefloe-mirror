@@ -1,0 +1,47 @@
+# yaml-language-server: $schema=https://json.schemastore.org/gitea-issue-forms.json
+name: Release
+about: Prepare a new release for the project.
+title: '[Release] Prepare v<VERSION> release'
+labels:
+  - Type/Release
+  - Status/In Progress
+assignees:
+  - glektarssza
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Please do **NOT** use this issue template unless you are somebody who
+        has the ability to perform a release.
+
+        Abuse of this template **WILL** lead to you getting blocked from being
+        able to contribute to this repository/project and, potentially, future
+        projects too.
+
+        You have been warned!
+  - id: body
+    type: textarea
+    validations:
+      required: true
+    attributes:
+      label: Body
+      description: The body of the issue.
+      value: |
+        Prepare to release this version.
+
+        Perform the following steps (in order):
+
+        * [ ] Update the changelog.
+        * [ ] Update the Forge update manifest to point to this release as the latest version.
+        * [ ] Tag the release.
+        * [ ] Release on GitHub.
+
+        After the above is completed, perform the following steps (in any order):
+
+        * [ ] Release on CurseForge.
+        * [ ] Release on Modrinth.
+
+        Finally, do the following (in order):
+
+        * [ ] Mark the GitHub milestone as completed.
+        * [ ] Close this ticket.
