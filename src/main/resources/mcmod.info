@@ -1,0 +1,19 @@
+[
+    {
+        "modid": "${mod.id}",
+        "name": "${mod.name}",
+        "description": "${mod.description}",
+        "version": "${mod.version}",
+        "mcversion": "${minecraft.version}",
+        "url": "${mod.homepage}",
+        "updateUrl": "${mod.update_manifest_url}",
+        "authorList": [
+            "${mod.author}"
+        ],
+        "credits": "${mod.credits}",
+        "logoFile": "assets/player_handling_customizer/textures/logo.png",
+        "screenshots": [],
+        "parent": "",
+        "dependencies": []
+    }
+]

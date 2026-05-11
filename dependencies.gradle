@@ -1,1 +1,29 @@
-dependencies {}
+dependencies {
+    if (getPropertyOrDefault('mod.assetmover.enabled', 'false').toBoolean()) {
+        implementation 'com.cleanroommc:assetmover:2.5'
+    }
+    if (getPropertyOrDefault('mod.mixins.enabled', 'false').toBoolean()) {
+        def refMapName = 'mixins.' + getProperty('mod.id') + '.refmap.json'
+        def mixinProviderSpec = 'zone.rong:mixinbooter:10.7'
+
+        // -- Common
+        annotationProcessor('org.ow2.asm:asm-debug-all:5.2')
+        annotationProcessor('com.google.guava:guava:33.6.0-jre')
+        annotationProcessor('com.google.code.gson:gson:2.14.0')
+
+        // -- Mixins
+        implementation(modUtils.enableMixins(mixinProviderSpec, refMapName))
+        api(mixinProviderSpec) { transitive = false }
+        annotationProcessor(mixinProviderSpec) { transitive = false }
+    }
+
+    // -- Runtime-only mods (things we like for easier testing!)
+    runtimeOnlyNonPublishable rfg.deobf('curse.maven:had-enough-items-557549:5815590')
+    runtimeOnlyNonPublishable rfg.deobf('curse.maven:configanytime-870276:5212709')
+    runtimeOnlyNonPublishable rfg.deobf('curse.maven:universal-tweaks-705000:5529764')
+
+    // -- Testing
+    testImplementation 'org.junit.jupiter:junit-jupiter-api:5.14.4'
+    testImplementation 'org.junit.jupiter:junit-jupiter-params:5.14.4'
+    testRuntimeOnly 'org.junit.jupiter:junit-jupiter-engine:5.14.4'
+}

@@ -17,6 +17,10 @@ def getProperty(key) {
 group = "${getProperty('mod.base_group')}.${getProperty('mod.id')}"
 version = getProperty('mod.version')
 
+base {
+    archivesName = getProperty('mod.archive_base_name')
+}
+
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
@@ -27,9 +31,45 @@ java {
     withJavadocJar()
 }
 
+tasks.withType(JavaCompile).configureEach {
+    options.encoding = 'UTF-8'
+}
+
+configurations {
+    embed
+    implementation.extendsFrom(embed)
+    create('runtimeOnlyNonPublishable') {
+        description = 'Runtime only dependencies that are not published alongside the jar'
+        canBeConsumed = false
+        canBeResolved = false
+    }
+
+    create('devOnlyNonPublishable') {
+        description = 'Runtime and compile-time dependencies that are not published alongside the jar (compileOnly + runtimeOnlyNonPublishable)'
+        canBeConsumed = false
+        canBeResolved = false
+    }
+    compileOnly.extendsFrom(devOnlyNonPublishable)
+    runtimeOnlyNonPublishable.extendsFrom(devOnlyNonPublishable)
+    runtimeClasspath.extendsFrom(runtimeOnlyNonPublishable)
+    testRuntimeClasspath.extendsFrom(runtimeOnlyNonPublishable)
+}
+
 minecraft {
     username = 'Developer'
     mcVersion = getProperty('minecraft.version')
+    def args = ["-ea:${project.group}"]
+    if (getPropertyOrDefault('mod.core_mod.enabled', 'false').toBoolean()) {
+        args << '-Dfml.coreMods.load=' + getProperty('mod.core_mod.plugin_class_name')
+    }
+    if (getPropertyOrDefault('mod.mixins.enabled', 'false').toBoolean()) {
+        args << '-Dmixin.hotSwap=' + getPropertyOrDefault('mod.mixins.hot_swap.enabled', 'false')
+        args << '-Dmixin.checks.interfaces=true'
+        args << '-Dmixin.debug.export=true'
+    }
+    extraRunJvmArguments.addAll(args)
+    groupsToExcludeFromAutoReobfMapping.addAll('com.diffplug', 'com.diffplug.durian', 'net.industrial-craft')
+    useDependencyAccessTransformers = true
     injectedTags.put('MOD_NAME', getProperty('mod.name'))
     injectedTags.put('MOD_ID', getProperty('mod.id'))
     injectedTags.put('MOD_VERSION', getProperty('mod.version'))
@@ -43,8 +83,6 @@ minecraft {
     injectedTags.put('MOD_SIGNATURE', getProperty('mod.signature'))
     injectedTags.put('MINECRAFT_VERSION', getProperty('minecraft.version'))
     injectedTags.put('MINECRAFT_VERSION_RANGE', getProperty('minecraft.version.range'))
-    extraRunJvmArguments.add("-ea:${project.group}")
-    groupsToExcludeFromAutoReobfMapping.addAll('com.diffplug', 'com.diffplug.durian', 'net.industrial-craft')
 }
 
 tasks.injectTags.configure {
@@ -53,30 +91,51 @@ tasks.injectTags.configure {
 
 tasks.processResources.configure {
     // -- Needed for configuration cache to work
-    def projVersion = project.version.toString()
-    inputs.property('version', getProperty('mod.version'))
+    inputs.property('mod.name', getProperty('mod.name'))
+    inputs.property('mod.id', getProperty('mod.id'))
+    inputs.property('mod.description', getPropertyOrDefault('mod.description', ''))
+    inputs.property('mod.author', getPropertyOrDefault('mod.author', ''))
+    inputs.property('mod.version', getProperty('mod.version'))
+    inputs.property('mod.author', getPropertyOrDefault('mod.author', ''))
+    inputs.property('mod.dependencies', getPropertyOrDefault('mod.dependencies', ''))
+    inputs.property('mod.homepage', getPropertyOrDefault('mod.homepage', ''))
+    inputs.property('mod.credits', getPropertyOrDefault('mod.credits', ''))
+    inputs.property('mod.update_manifest_url', getPropertyOrDefault('mod.update_manifest_url', ''))
+    inputs.property('minecraft.version', getProperty('minecraft.version'))
+
+    def props = [
+        mod: [
+            name: getProperty('mod.name'),
+            id: getProperty('mod.id'),
+            description: getPropertyOrDefault('mod.description', ''),
+            author: getPropertyOrDefault('mod.author', ''),
+            version: getProperty('mod.version'),
+            author: getPropertyOrDefault('mod.author', ''),
+            dependencies: getPropertyOrDefault('mod.dependencies', ''),
+            homepage: getPropertyOrDefault('mod.homepage', ''),
+            credits: getPropertyOrDefault('mod.credits', ''),
+            update_manifest_url: getPropertyOrDefault('mod.update_manifest_url', ''),
+        ],
+        minecraft: [
+            version: getProperty('minecraft.version'),
+        ]
+    ]
 
     filesMatching('mcmod.info') {
-        expand(['mod_version': getProperty('mod.version')])
+        expand(props)
     }
-}
-
-configurations {
-    runtimeOnlyNonPublishable {
-        description = 'Runtime only dependencies that are not published alongside the jar'
-        canBeConsumed = false
-        canBeResolved = false
-    }
-}
-
-[configurations.runtimeClasspath, configurations.testRuntimeClasspath].forEach {
-    it.extendsFrom(configurations.runtimeOnlyNonPublishable)
 }
 
 apply from: 'repositories.gradle'
 apply from: 'dependencies.gradle'
+apply from: 'access_transformer.gradle'
+apply from: 'mixins.gradle'
 apply from: 'linting.gradle'
 apply from: 'ide.gradle'
+
+test {
+    useJUnitPlatform()
+}
 
 publishing {
     publications {}

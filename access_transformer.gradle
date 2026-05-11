@@ -1,0 +1,8 @@
+if (getPropertyOrDefault('mod.access_transformers.enabled', 'false').toBoolean()) {
+    for (File at : sourceSets.getByName('main').resources.files) {
+        if (at.name.toLowerCase().endsWith('_at.cfg')) {
+            tasks.deobfuscateMergedJarToSrg.accessTransformerFiles.from(at)
+            tasks.srgifyBinpatchedJar.accessTransformerFiles.from(at)
+        }
+    }
+}
