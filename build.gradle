@@ -36,6 +36,8 @@ minecraft {
     injectedTags.put('MOD_DEPENDENCIES', getProperty('mod.dependencies'))
     injectedTags.put('MOD_ACCEPTED_SAVE_VERSION_RANGE', getProperty('mod.version.accepted_save_range'))
     injectedTags.put('MOD_ACCEPTED_REMOTE_VERSION_RANGE', getProperty('mod.version.accepted_remote_range'))
+    injectedTags.put('MOD_SIDED_PROXY_CLIENT_SIDE', getProperty('mod.sided_proxy.client_side'))
+    injectedTags.put('MOD_SIDED_PROXY_SERVER_SIDE', getProperty('mod.sided_proxy.server_side'))
     injectedTags.put('UPDATE_MANIFEST_URL', getProperty('mod.gui_factory'))
     injectedTags.put('MOD_GUI_FACTORY', getProperty('mod.update_manifest_url'))
     injectedTags.put('MOD_SIGNATURE', getProperty('mod.signature'))
