@@ -12,3 +12,21 @@
 
 # gradle/wrapper/gradle-wrapper.jar is tracked with Git LFS.
 gradle/wrapper/gradle-wrapper.jar filter=lfs diff=lfs merge=lfs -text
+
+# All .png files are tracked with Git LFS.
+*.png filter=lfs diff=lfs merge=lfs -text
+
+# All .jpg files are tracked with Git LFS.
+*.jpg filter=lfs diff=lfs merge=lfs -text
+
+# All .jpeg files are tracked with Git LFS.
+*.jpeg filter=lfs diff=lfs merge=lfs -text
+
+# All .bmp files are tracked with Git LFS.
+*.bmp filter=lfs diff=lfs merge=lfs -text
+
+# All .gif files are tracked with Git LFS.
+*.gif filter=lfs diff=lfs merge=lfs -text
+
+# All .tiff files are tracked with Git LFS.
+*.tiff filter=lfs diff=lfs merge=lfs -text
