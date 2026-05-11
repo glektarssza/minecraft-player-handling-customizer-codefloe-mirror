@@ -44,11 +44,20 @@
         "java.codeGeneration.toString.template": "${object.className} [${member.name()}=${member.value}, ${otherMembers}]",
         "java.codeGeneration.useBlocks": true,
         "java.compile.nullAnalysis.mode": "automatic",
-        "java.compile.nullAnalysis.nonnull": ["javax.annotation.Nonnull"],
+        "java.compile.nullAnalysis.nonnull": [
+            "com.glektarssza.player_handling_customizer.api.annotations.NotNull",
+            "org.jetbrains.annotations.NotNull",
+            "javax.annotation.Nonnull"
+        ],
         "java.compile.nullAnalysis.nonnullbydefault": [
+            "com.glektarssza.player_handling_customizer.api.annotations.ParametersNotNullByDefault",
             "javax.annotation.ParametersAreNonnullByDefault"
         ],
-        "java.compile.nullAnalysis.nullable": ["javax.annotation.Nullable"],
+        "java.compile.nullAnalysis.nullable": [
+            "com.glektarssza.player_handling_customizer.api.annotations.Nullable",
+            "org.jetbrains.annotations.Nullable",
+            "javax.annotation.Nullable"
+        ],
         "java.completion.chain.enabled": true,
         "java.completion.collapseCompletionItems": true,
         "java.completion.enabled": true,
