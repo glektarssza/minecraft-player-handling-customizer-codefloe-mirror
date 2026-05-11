@@ -1,3 +1,17 @@
 {
-    "recommendations": ["EditorConfig.EditorConfig", "maxking.forgejo-vscode"]
+    "recommendations": [
+        "EditorConfig.EditorConfig",
+        "maxking.forgejo-vscode",
+        "redhat.java",
+        "vscjava.vscode-java-dependency",
+        "vscjava.vscode-gradle",
+        "vscjava.vscode-java-debug",
+        "vscjava.vscode-java-test",
+        "shengchen.vscode-checkstyle",
+        "SPGoding.datapack-language-server",
+        "Nobuwu.mc-color",
+        "actuallyboomber.tellraw-preview",
+        "Misodee.vscode-nbt"
+    ],
+    "unwantedRecommendations": ["vscjava.vscode-java-pack"]
 }
