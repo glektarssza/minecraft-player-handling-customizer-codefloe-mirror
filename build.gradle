@@ -1,18 +1,26 @@
 plugins {
+    id('eclipse')
     id('java-library')
     id('maven-publish')
-    id('eclipse')
     id('com.gtnewhorizons.retrofuturagradle') version '2.0.2'
     id('com.diffplug.spotless') version '8.4.0' apply false
 }
 
-group = 'com.glektarssza.player_handling_customizer'
-version = '0.1.0'
+def getPropertyOrDefault(key, defaultValue) {
+    return providers.gradleProperty(key).getOrElse(defaultValue)
+}
+
+def getProperty(key) {
+    return providers.gradleProperty(key).get()
+}
+
+group = "${getProperty('mod.base_group')}.${getProperty('mod.id')}"
+version = getProperty('mod.version')
 
 java {
     toolchain {
         languageVersion.set(JavaLanguageVersion.of(8))
-        // Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
+        // -- Azul covers the most platforms for Java 8 toolchains, crucially including MacOS arm64
         vendor.set(org.gradle.jvm.toolchain.JvmVendorSpec.AZUL)
     }
     withSourcesJar()
@@ -20,9 +28,19 @@ java {
 }
 
 minecraft {
-    mcVersion = '1.12.2'
     username = 'Developer'
-    injectedTags.put('VERSION', project.version)
+    mcVersion = getProperty('minecraft.version')
+    injectedTags.put('MOD_NAME', getProperty('mod.name'))
+    injectedTags.put('MOD_ID', getProperty('mod.id'))
+    injectedTags.put('MOD_VERSION', getProperty('mod.version'))
+    injectedTags.put('MOD_DEPENDENCIES', getProperty('mod.dependencies'))
+    injectedTags.put('MOD_ACCEPTED_SAVE_VERSION_RANGE', getProperty('mod.version.accepted_save_range'))
+    injectedTags.put('MOD_ACCEPTED_REMOTE_VERSION_RANGE', getProperty('mod.version.accepted_remote_range'))
+    injectedTags.put('UPDATE_MANIFEST_URL', getProperty('mod.gui_factory'))
+    injectedTags.put('MOD_GUI_FACTORY', getProperty('mod.update_manifest_url'))
+    injectedTags.put('MOD_SIGNATURE', getProperty('mod.signature'))
+    injectedTags.put('MINECRAFT_VERSION', getProperty('minecraft.version'))
+    injectedTags.put('MINECRAFT_VERSION_RANGE', getProperty('minecraft.version.range'))
     extraRunJvmArguments.add("-ea:${project.group}")
     groupsToExcludeFromAutoReobfMapping.addAll('com.diffplug', 'com.diffplug.durian', 'net.industrial-craft')
 }
@@ -34,10 +52,10 @@ tasks.injectTags.configure {
 tasks.processResources.configure {
     // -- Needed for configuration cache to work
     def projVersion = project.version.toString()
-    inputs.property('version', projVersion)
+    inputs.property('version', getProperty('mod.version'))
 
     filesMatching('mcmod.info') {
-        expand(mapOf('modVersion' to projVersion))
+        expand(['mod_version': getProperty('mod.version')])
     }
 }
 
