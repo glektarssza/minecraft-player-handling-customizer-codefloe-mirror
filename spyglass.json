@@ -1,0 +1,7 @@
+{
+    "env": {
+        "gameVersion": "1.12.2",
+        "enableMcdocCaching": true,
+        "permissionLevel": 4
+    }
+}

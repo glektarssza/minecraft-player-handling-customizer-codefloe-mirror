@@ -24,6 +24,7 @@ gtnh
 importorder
 jvmargs
 mapfile
+mcdoc
 mcmod
 mcversion
 mixinbooter
