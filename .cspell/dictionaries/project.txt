@@ -2,12 +2,14 @@ aout
 areobf
 asexplicit
 assetmover
+assertj
 azul
 binpatched
 buildscript
 cleanroom
 cleanroommc
 customizer
+datafaker
 dfml
 diffplug
 dmixin

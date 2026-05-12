@@ -130,12 +130,9 @@ apply from: 'repositories.gradle'
 apply from: 'dependencies.gradle'
 apply from: 'access_transformer.gradle'
 apply from: 'mixins.gradle'
+apply from: 'tests.gradle'
 apply from: 'linting.gradle'
 apply from: 'ide.gradle'
-
-test {
-    useJUnitPlatform()
-}
 
 publishing {
     publications {}
