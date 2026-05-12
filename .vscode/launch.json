@@ -1,0 +1,82 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "type": "java",
+            "name": "Launch and Debug Client",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "5005",
+            "preLaunchTask": "gradle:runClient:debug"
+        },
+        {
+            "type": "java",
+            "name": "DLaunch and Debug Client (Obfuscated)",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "5005",
+            "preLaunchTask": "gradle:runClient:obfuscated:debug"
+        },
+        {
+            "type": "java",
+            "name": "Launch and Debug Client (Java 17)",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "5005",
+            "preLaunchTask": "gradle:runClient17:debug"
+        },
+        {
+            "type": "java",
+            "name": "Launch and Debug Client (Java 21)",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "5005",
+            "preLaunchTask": "gradle:runClient21:debug"
+        },
+        {
+            "type": "java",
+            "name": "Launch and Debug Client (Java 25)",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "5005",
+            "preLaunchTask": "gradle:runClient25:debug"
+        },
+        {
+            "type": "java",
+            "name": "Attach to Running Client",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "5005"
+        },
+        {
+            "type": "java",
+            "name": "Attach to Running Client (Custom Port)",
+            "request": "attach",
+            "hostName": "localhost",
+            "projectName": "minecraft-gtnh-customizer",
+            "port": "${input:customPort}"
+        },
+        {
+            "type": "java",
+            "name": "Pick Running Client to Attach To",
+            "hostName": "localhost",
+            "request": "attach",
+            "projectName": "minecraft-gtnh-customizer",
+            "processId": "${command:PickJavaProcess}"
+        }
+    ],
+    "inputs": [
+        {
+            "id": "customPort",
+            "type": "promptString",
+            "description": "The custom port to look for a running client with a debugger enabled on.",
+            "default": "5005"
+        }
+    ]
+}
