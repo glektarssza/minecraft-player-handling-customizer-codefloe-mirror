@@ -16,6 +16,8 @@ repositories {
         }
         filter {
             includeGroup('com.cleanroommc')
+            includeGroup('zone.rong')
+
         }
     }
     exclusiveContent {

@@ -3,13 +3,17 @@ pluginManagement {
         maven {
             name = 'GregTech: New Horizons Maven'
             url = uri('https://nexus.gtnewhorizons.com/repository/public/')
+            mavenContent {
+                includeGroup('com.gtnewhorizons')
+                includeGroup('com.gtnewhorizons.retrofuturagradle')
+            }
         }
         gradlePluginPortal()
         mavenCentral()
         mavenLocal()
     }
 }
-
 plugins {
     id('org.gradle.toolchains.foojay-resolver-convention') version '1.0.0'
 }
+rootProject.name = 'player-handling-customizer'

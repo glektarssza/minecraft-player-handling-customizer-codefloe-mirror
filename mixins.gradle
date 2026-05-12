@@ -1,12 +1,10 @@
-import com.gtnewhorizons.retrofuturagradle.mcp.ReobfuscatedJar
-
 def mixinConfigRefMap = 'mixins.' + getProperty('mod.id') + '.refmap.json'
 def mixinTmpDir = buildDir.path + File.separator + 'tmp' + File.separator + 'mixins'
 def refMap = "${mixinTmpDir}" + File.separator + mixinConfigRefMap
 def mixinSrg = "${mixinTmpDir}" + File.separator + 'mixins.srg'
 
 if (getPropertyOrDefault('mod.mixins.enabled', 'false').toBoolean()) {
-    tasks.named('reobfJar', ReobfuscatedJar).configure {
+    tasks.named('reobfJar').configure {
         extraSrgFiles.from(mixinSrg)
     }
 
