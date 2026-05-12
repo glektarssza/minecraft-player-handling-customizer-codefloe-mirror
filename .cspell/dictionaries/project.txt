@@ -10,6 +10,7 @@ cleanroommc
 customizer
 dfml
 diffplug
+dmixin
 ensurepath
 envrc
 factorypath
@@ -26,6 +27,7 @@ mapfile
 mcmod
 mcversion
 mixinbooter
+mkdirs
 modid
 netrwhist
 noconfirm
