@@ -1,8 +1,8 @@
 aout
 areobf
 asexplicit
-assetmover
 assertj
+assetmover
 azul
 binpatched
 buildscript
@@ -25,6 +25,7 @@ gtnewhorizons
 gtnh
 importorder
 jvmargs
+locksverify
 mapfile
 mcdoc
 mcmod

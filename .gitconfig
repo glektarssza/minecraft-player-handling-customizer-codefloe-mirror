@@ -4,3 +4,5 @@
     # This is recommended to warn about issues, it can also be set to `true` to
     # enforce the above.
 	safecrlf = warn
+[lfs "https://codefloe.com/glektarssza/minecraft-player-handling-customizer.git/info/lfs"]
+	locksverify = true
