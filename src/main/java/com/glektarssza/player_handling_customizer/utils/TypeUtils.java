@@ -36,9 +36,6 @@ public final class TypeUtils {
      *
      * @param <T> The type of the value to check.
      * @param value The value to check.
-     * @param errorMessage The error message to produce a
-     *        {@link NullPointerException} with if the {@code value} is
-     *        {@code null}.
      *
      * @return The {@code value} if it is not {@code null}.
      *
