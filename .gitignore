@@ -69,6 +69,8 @@ user.properties
 bin/
 build/
 .gradle/
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
 
 # Debugging #
 ## Gradle ##
