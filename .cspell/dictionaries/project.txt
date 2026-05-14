@@ -23,6 +23,7 @@ glektarssza
 gson
 gtnewhorizons
 gtnh
+hookspath
 importorder
 jvmargs
 locksverify
@@ -33,6 +34,7 @@ mcversion
 mixinbooter
 mkdirs
 modid
+mpre
 netrwhist
 noconfirm
 noninfringement

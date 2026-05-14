@@ -3,6 +3,8 @@
     autocrlf = false
     # This is recommended to warn about issues, it can also be set to `true` to
     # enforce the above.
-	safecrlf = warn
+	safecrlf = true
+    # This is the path to our custom hooks.
+    hookspath = ".hooks/git/"
 [lfs "https://codefloe.com/glektarssza/minecraft-player-handling-customizer.git/info/lfs"]
 	locksverify = true
