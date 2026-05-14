@@ -22,9 +22,9 @@ PRE_COMMIT="$(command -v pre-commit)"
 if [[ -n "${PRE_COMMIT}" ]]; then
     PYTHON="$(find "$(dirname "${PRE_COMMIT}")" -type f -iregex ".+/python(.exe)?")"
     if [[ -n "${PYTHON}" ]]; then
-        "${PYTHON}" -mpre_commit hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit --skip-on-missing-config --hook-dir "${HERE}" -- "$@"
+        "${PYTHON}" -mpre_commit hook-impl --config=.pre-commit-config.yaml --hook-type=pre-push --skip-on-missing-config --hook-dir "${HERE}" -- "$@"
     else
-        "${PRE_COMMIT}" hook-impl --config=.pre-commit-config.yaml --hook-type=pre-commit --skip-on-missing-config --hook-dir "${HERE}" -- "$@"
+        "${PRE_COMMIT}" hook-impl --config=.pre-commit-config.yaml --hook-type=pre-push --skip-on-missing-config --hook-dir "${HERE}" -- "$@"
     fi
     RESULT=$?
 else
