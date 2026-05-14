@@ -122,8 +122,9 @@ public final class PlayerHandlingCustomizer {
      *         unforeseen circumstances.
      */
     @Mod.EventHandler
-    public void OnPreInit(FMLPreInitializationEvent event)
-        throws RuntimeException {
+    public void OnPreInit(
+        FMLPreInitializationEvent event
+    ) throws RuntimeException {
         logger = event.getModLog();
         getLogger()
             .info(
