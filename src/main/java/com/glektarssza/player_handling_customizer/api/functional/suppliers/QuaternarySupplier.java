@@ -21,5 +21,5 @@ public interface QuaternarySupplier<T1, T2, T3, T4, R> {
      *
      * @return The return value.
      */
-    public void call(T1 first, T2 second, T3 third, T4 fourth);
+    public R call(T1 first, T2 second, T3 third, T4 fourth);
 }

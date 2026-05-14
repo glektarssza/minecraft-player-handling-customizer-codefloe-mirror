@@ -17,5 +17,5 @@ public interface BinarySupplier<T1, T2, R> {
      *
      * @return The return value.
      */
-    public void call(T1 first, T2 second);
+    public R call(T1 first, T2 second);
 }
