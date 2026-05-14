@@ -1,11 +1,13 @@
 # yaml-language-server: $schema=https://json.schemastore.org/pre-commit-config.json
 repos:
   - repo: https://github.com/pre-commit/pre-commit-hooks.git
-    rev: v6.0.0
+    rev: v5.0.0
     hooks:
       - id: check-added-large-files
       - id: check-symlinks
+      - id: destroyed-symlinks
       - id: check-case-conflict
+      - id: check-illegal-windows-names
       - id: check-executables-have-shebangs
       - id: check-shebang-scripts-are-executable
       - id: check-merge-conflict
@@ -13,7 +15,6 @@ repos:
       - id: check-toml
       - id: check-yaml
       - id: detect-private-key
-      - id: trailing-whitespace
       - id: end-of-file-fixer
       - id: fix-byte-order-marker
       - id: mixed-line-ending
@@ -22,3 +23,8 @@ repos:
       - id: mixed-line-ending
         args: [--fix=crlf]
         types: [batch]
+      - id: trailing-whitespace
+  - repo: https://github.com/glektarssza/pre-commit-hooks.git
+    rev: v0.6.3
+    hooks:
+      - id: gradlew-spotless
