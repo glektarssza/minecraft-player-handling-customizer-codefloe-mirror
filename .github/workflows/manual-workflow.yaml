@@ -1,0 +1,148 @@
+# yaml-language-server: $schema=https://json.schemastore.org/github-workflow.json
+name: Manual Workflow
+on:
+  workflow_dispatch:
+    inputs:
+      java-vendor:
+        description: |
+          The Java vendor to use.
+
+          Defaults to 'temurin'.
+        type: choice
+        required: false
+        options:
+          - temurin
+          - zulu
+          - adopt
+          - adopt-hotspot
+          - adopt-openj9
+          - liberica
+          - microsoft
+          - corretto
+          - semeru
+          - oracle
+          - dragonwell
+          - sapmachine
+          - graalvm
+          - jetbrains
+        default: temurin
+      java-version:
+        description: |
+          The Java version to use.
+
+          Defaults to 'version-file' to use the version found in the
+          '.java-version' file present in the project.
+        type: string
+        required: false
+        default: version-file
+      gradle-version:
+        description: |
+          The Gradle version to use.
+
+          Defaults to 'wrapper' to use version of the Gradle wrapper present in
+          the project.
+        type: string
+        required: false
+        default: wrapper
+      node-version:
+        description: |
+          The NodeJS version to use.
+
+          Defaults to "latest".
+        type: string
+        required: false
+        default: latest
+      package-manager:
+        description: |
+          The NodeJS package manager to use.
+
+          Defaults to "pnpm".
+        type: choice
+        required: false
+        options:
+          - pnpm
+          - npm
+          - yarn
+        default: pnpm
+      package-manager-version:
+        description: |
+          The NodeJS package manager version to use.
+
+          Defaults to "latest".
+        type: string
+        required: false
+        default: latest
+      artifact-retention-days:
+        description: |
+          The duration, in days, to retain artifacts for.
+
+          Defaults to '0' which defaults to the value configured for the
+          repository.
+        type: number
+        required: false
+        default: 0
+jobs:
+  build:
+    name: Build
+    permissions:
+      # -- To clone repository
+      contents: read
+    uses: ./.github/workflows/build.yaml
+    with:
+      ref: ${{github.sha}}
+      java-version: ${{inputs.java-version}}
+      java-vendor: ${{inputs.java-vendor}}
+      gradle-version: ${{inputs.gradle-version}}
+      artifact-retention-days: ${{inputs.artifact-retention-days}}
+    secrets:
+      github-token: ${{secrets.GITHUB_TOKEN}}
+  test:
+    name: Test
+    permissions:
+      # -- To clone repository
+      contents: read
+    uses: ./.github/workflows/test.yaml
+    with:
+      ref: ${{github.sha}}
+      java-version: ${{inputs.java-version}}
+      java-vendor: ${{inputs.java-vendor}}
+      gradle-version: ${{inputs.gradle-version}}
+      artifact-retention-days: ${{inputs.artifact-retention-days}}
+    secrets:
+      github-token: ${{secrets.GITHUB_TOKEN}}
+  lint:
+    name: Lint
+    permissions:
+      # -- To clone repository
+      contents: read
+    uses: ./.github/workflows/lint.yaml
+    with:
+      ref: ${{github.sha}}
+      java-version: ${{inputs.java-version}}
+      java-vendor: ${{inputs.java-vendor}}
+      gradle-version: ${{inputs.gradle-version}}
+    secrets:
+      github-token: ${{secrets.GITHUB_TOKEN}}
+  spell-check:
+    name: Spell Check
+    permissions:
+      # -- To clone repository
+      contents: read
+    uses: ./.github/workflows/spell-check.yaml
+    with:
+      ref: ${{github.sha}}
+      node-version: ${{inputs.node-version}}
+      package-manager: ${{inputs.package-manager}}
+      package-manager-version: ${{inputs.package-manager-version}}
+    secrets:
+      github-token: ${{secrets.GITHUB_TOKEN}}
+  dependency-submission:
+    name: Dependency Submission
+    permissions:
+      # -- Needed to clone the repository and submit dependency reports
+      contents: write
+    uses: ./.github/workflows/dependency-submission.yaml
+    with:
+      ref: ${{github.sha}}
+    secrets:
+      github-token: ${{secrets.GITHUB_TOKEN}}

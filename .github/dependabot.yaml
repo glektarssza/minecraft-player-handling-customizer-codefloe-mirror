@@ -1,0 +1,69 @@
+# yaml-language-server: $schema=https://json.schemastore.org/dependabot-2.0.json
+version: 2
+updates:
+  - directory: /
+    package-ecosystem: gradle
+    labels:
+      - Dependency
+    patterns: ['*']
+    groups:
+      weekly-production-dependency-security-updates:
+        applies-to: security-updates
+        dependency-type: production
+        group-by: dependency-name
+        patterns: ['*']
+        exclude-patterns: ['gradle-wrapper']
+      weekly-development-dependency-security-updates:
+        applies-to: security-updates
+        dependency-type: development
+        group-by: dependency-name
+        patterns: ['*']
+        exclude-patterns: ['gradle-wrapper']
+      weekly-production-dependency-version-updates:
+        applies-to: version-updates
+        dependency-type: production
+        group-by: dependency-name
+        patterns: ['*']
+        exclude-patterns: ['gradle-wrapper']
+      weekly-development-dependency-version-updates:
+        applies-to: version-updates
+        dependency-type: development
+        group-by: dependency-name
+        patterns: ['*']
+        exclude-patterns: ['gradle-wrapper']
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: '12:00'
+      timezone: Canada/Mountain
+  - directory: ./.github/
+    package-ecosystem: github-actions
+    labels:
+      - Dependency
+    patterns: ['*']
+    groups:
+      weekly-production-dependency-security-updates:
+        applies-to: security-updates
+        dependency-type: production
+        group-by: dependency-name
+        patterns: ['*']
+      weekly-development-dependency-security-updates:
+        applies-to: security-updates
+        dependency-type: development
+        group-by: dependency-name
+        patterns: ['*']
+      weekly-production-dependency-version-updates:
+        applies-to: version-updates
+        dependency-type: production
+        group-by: dependency-name
+        patterns: ['*']
+      weekly-development-dependency-version-updates:
+        applies-to: version-updates
+        dependency-type: development
+        group-by: dependency-name
+        patterns: ['*']
+    schedule:
+      interval: weekly
+      day: wednesday
+      time: '12:00'
+      timezone: Canada/Mountain
