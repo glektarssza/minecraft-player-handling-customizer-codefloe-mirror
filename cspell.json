@@ -28,7 +28,13 @@
     "useGitignore": true,
     "gitignoreRoot": ["."],
     "caseSensitive": false,
-    "ignorePaths": ["./.git/**"],
+    "ignorePaths": [
+        "./.git/**",
+        "./gradlew",
+        "./gradlew.bat",
+        "./formatting_rules.xml",
+        "**/gradle-wrapper.properties"
+    ],
     "loadDefaultConfiguration": true,
     "unknownWords": "report-all",
     "readonly": true,
