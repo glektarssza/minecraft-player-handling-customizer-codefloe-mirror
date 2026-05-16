@@ -51,3 +51,4 @@ safecrlf
 sessionx
 srgify
 tarssza
+temurin
