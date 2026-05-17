@@ -143,7 +143,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during pre-initialization logic for mod with ID \"{}\"",
+                        "Fatal exception during pre-initialization logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -180,7 +180,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during initialization logic for mod with ID \"{}\"",
+                        "Fatal exception during initialization logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -217,7 +217,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during post-initialization logic for mod with ID \"{}\"",
+                        "Fatal exception during post-initialization logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -255,7 +255,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during server \"about to start\" logic for mod with ID \"{}\"",
+                        "Fatal exception during server \"about to start\" logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -293,7 +293,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during server \"server starting\" logic for mod with ID \"{}\"",
+                        "Fatal exception during server \"server starting\" logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -331,7 +331,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during server \"server started\" logic for mod with ID \"{}\"",
+                        "Fatal exception during server \"server started\" logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -369,7 +369,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during server \"server stopping\" logic for mod with ID \"{}\"",
+                        "Fatal exception during server \"server stopping\" logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
@@ -407,7 +407,7 @@ public final class PlayerHandlingCustomizer {
             throw new RuntimeException(
                 String
                     .format(
-                        "Fatal exception during server \"server stopped\" logic for mod with ID \"{}\"",
+                        "Fatal exception during server \"server stopped\" logic for mod with ID \"%s\"",
                         Tags.MOD_ID
                     ),
                 ex
